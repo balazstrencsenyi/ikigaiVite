@@ -6,8 +6,7 @@
 
 #root {
   width: 100%;
-  height: 100vh;
-  background-color: #004AAD;
+  height: 400vh;
 }
 
 li {
@@ -46,6 +45,8 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background-color: #004aad;
 }
 
 .homeContainer {
@@ -56,3 +57,71 @@ nav {
   gap: 20px;
 }
 
+.services {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: black;
+}
+
+.servicesContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.services1 {
+  width: 100%;
+  height: 90vh;
+}
+
+.services1Container {
+  display: flex;
+  height: 100%;
+}
+
+.serviceImageContainer {
+  height: 100%;
+  width: 30%;
+}
+
+.serviceImage {
+  height: 100%;
+  width: 100%;
+}
+
+.serviceRightContainer {
+  height: 100%;
+  width: 70%;
+}
+
+.serviceTextUpperContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 50%;
+  gap: 40px;
+  padding-left: 20px;
+}
+
+.serviceTextBottomContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 50%;
+  gap: 40px;
+  padding-left: 20px;
+}
+
+.benefits {
+  width: 100%;
+  height: 130vh;
+  background-color: #004aad;
+  color: white;
+}
