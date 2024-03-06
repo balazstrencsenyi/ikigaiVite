@@ -1,10 +1,12 @@
 function Header() {
+  const headerHeight = 60; // Height of your header in pixels
+
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
       window.scrollTo({
-        top: section.offsetTop,
-        behavior: 'smooth' // Smooth scrolling behavior
+        top: section.offsetTop - headerHeight, // Adjusted top position
+        behavior: 'smooth'
       });
     }
   };
