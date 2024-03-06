@@ -9,6 +9,8 @@ import SendIcon from "@mui/icons-material/Send";
 function App() {
   const [rotation, setRotation] = useState(0);
   const [showLogo, setShowLogo] = useState(false);
+  const [showBalazsDiv, setShowBalazsDiv] = useState(false);
+  const [showMarciDiv, setShowMarciDiv] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -31,6 +33,13 @@ function App() {
     }
   };
 
+  const toggleBalazsDiv = () => {
+    setShowBalazsDiv(!showBalazsDiv);
+  };
+
+  const toggleMarciDiv = () => {
+    setShowMarciDiv(!showMarciDiv);
+  };
   return (
     <>
       <Header scrollToSection={scrollToSection} />
@@ -120,26 +129,45 @@ function App() {
           <div>A</div>
           <div>M</div>
         </div>
-   <div className="rightContainer">
-  <div className="balazsCard">
-    <img src="./src/assets/balazs.jpg" className="trenyo" />
-    <Button
-      variant="contained"
-      startIcon={<SendIcon />}
-      style={{ transform: "rotate(180deg)", backgroundColor: "black" }} // Change background color here
-    >
-      {/* Button content */}
-    </Button>
-  </div>
+    <div className="rightContainer">
+          <div className="balazsCard">
+            <img src="./src/assets/balazs.jpg" className="trenyo" />
+            <Button
+              variant="contained"
+              startIcon={<SendIcon />}
+              style={{ transform: "rotate(180deg)", backgroundColor: "black" }}
+              onClick={toggleBalazsDiv}
+            >
+              
+            </Button>
+            {showBalazsDiv && (
+              <div className="renderedDiv" id="balazsRenderedDiv">
+                <h1>Trencsényi Balázs</h1>
+                <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos neque suscipit ipsum sequi. Doloremque corporis commodi dolorem animi veniam soluta repellat ad inventore rem repellendus? Praesentium mollitia et molestias consequatur.</div>
+              </div>
+            )}
+          </div>
 
-  <div className="marciCard">
-    <img src="./src/assets/marci.jpg" className="taki" />
-    <Button variant="contained" endIcon={<SendIcon />} style={{ backgroundColor: "black" }}> {/* Change background color here */}
-    </Button>
-  </div>
-</div>
-
+          <div className="marciCard">
+            <img src="./src/assets/marci.jpg" className="taki" />
+            <Button
+              variant="contained"
+              endIcon={<SendIcon />}
+              style={{ backgroundColor: "black" }}
+              onClick={toggleMarciDiv}
+            >
+              
+            </Button>
+            {showMarciDiv && (
+              <div className="renderedDiv" id="marciRenderedDiv">
+                <h1>Takács Márton</h1>
+                <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem optio odit libero officia aliquid repellat vel assumenda maxime, facere excepturi quidem voluptatem iure. Est enim quia illum, ipsum necessitatibus nostrum.</div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
+
 
       <div id="form" className="form">
         <div className="formContainer">

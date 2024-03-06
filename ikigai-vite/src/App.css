@@ -246,6 +246,26 @@ nav {
   gap: 20px;
 }
 
+.renderedDiv {
+  height: 500px;
+  width: 340px;
+  background-color: white;
+
+  position: absolute;
+
+  border-radius: 20px;
+
+  color: black;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  gap: 50px;
+}
+
 .trenyo {
   height: 500px;
   width: 340px;
