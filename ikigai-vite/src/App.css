@@ -209,6 +209,16 @@ nav {
   border-bottom: 2px solid #018bdb;
 }
 
+.balazsCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.marciCard {
+  display: flex;
+  flex-direction: column;
+}
+
 .leftContainer {
   width: 10%;
   height: 100%;

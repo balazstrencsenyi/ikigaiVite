@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/AppBar";
 import LinearBuffer from "./components/linearBuffer";
-import  LinearIndeterminate  from "./components/linearProgess";
+import LinearIndeterminate from "./components/linearProgess";
+import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
 
 function App() {
   const [rotation, setRotation] = useState(0);
@@ -16,15 +18,15 @@ function App() {
   }, []);
 
   const rotateImage = () => {
-    setRotation(rotation => rotation + 90);
+    setRotation((rotation) => rotation + 90);
   };
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
       window.scrollTo({
-        top: section.offsetTop - 60, 
-        behavior: 'smooth'
+        top: section.offsetTop - 60,
+        behavior: "smooth",
       });
     }
   };
@@ -35,7 +37,10 @@ function App() {
 
       <div id="home" className="home">
         <div className="homeContainer">
-          <img src="./src/assets/logo.png" className={`homeLogo ${showLogo ? 'show' : ''}`} />
+          <img
+            src="./src/assets/logo.png"
+            className={`homeLogo ${showLogo ? "show" : ""}`}
+          />
           <h1 className="homeTitle">Digital Marketing Agency</h1>
           <h2>SLOGAN</h2>
         </div>
@@ -52,7 +57,7 @@ function App() {
             unique missions, and achieve sustainable growth in the digital
             realm.
           </div>
-          < LinearIndeterminate />
+          <LinearIndeterminate />
         </div>
       </div>
 
@@ -93,42 +98,66 @@ function App() {
           <h1>Benefits</h1>
           <LinearBuffer />
         </div>
-        <div className='rotateContainer'>
-          <img src="./src/assets/logo.png" className="rotate" style={{ transform: `rotate(${rotation}deg)`, transition: "transform 0.5s ease" }} />
-          <button className="rotateButton" onClick={rotateImage}>Rotate</button>
+        <div className="rotateContainer">
+          <img
+            src="./src/assets/logo.png"
+            className="rotate"
+            style={{
+              transform: `rotate(${rotation}deg)`,
+              transition: "transform 0.5s ease",
+            }}
+          />
+          <button className="rotateButton" onClick={rotateImage}>
+            Rotate
+          </button>
         </div>
       </div>
 
-      <div id="team" className='team'>
-        <div className='leftContainer'>
+      <div id="team" className="team">
+        <div className="leftContainer">
           <div>T</div>
           <div>E</div>
           <div>A</div>
           <div>M</div>
         </div>
-        <div className='rightContainer'>
-          <img src="./src/assets/balazs.jpg" className='trenyo' />
-          <img src="./src/assets/marci.jpg"className='taki' />
-        </div>
+   <div className="rightContainer">
+  <div className="balazsCard">
+    <img src="./src/assets/balazs.jpg" className="trenyo" />
+    <Button
+      variant="contained"
+      startIcon={<SendIcon />}
+      style={{ transform: "rotate(180deg)", backgroundColor: "black" }} // Change background color here
+    >
+      {/* Button content */}
+    </Button>
+  </div>
+
+  <div className="marciCard">
+    <img src="./src/assets/marci.jpg" className="taki" />
+    <Button variant="contained" endIcon={<SendIcon />} style={{ backgroundColor: "black" }}> {/* Change background color here */}
+    </Button>
+  </div>
+</div>
+
       </div>
 
-      <div id="form" className='form'>
-        <div className='formContainer'>
-          <div className='growTogetherContainer'>
-            <h1 className='growTogether'>LET&apos;S GROW TOGETHER</h1>
+      <div id="form" className="form">
+        <div className="formContainer">
+          <div className="growTogetherContainer">
+            <h1 className="growTogether">LET&apos;S GROW TOGETHER</h1>
           </div>
-          <div className='formContainer'>
+          <div className="formContainer">
             <form>
-              <input type='text' placeholder='Name' />
-              <input type='text' placeholder='Email' />
-              <textarea placeholder='Message' />
+              <input type="text" placeholder="Name" />
+              <input type="text" placeholder="Email" />
+              <textarea placeholder="Message" />
               <button>Send</button>
             </form>
           </div>
         </div>
       </div>
 
-      <div className='footer'>
+      <div className="footer">
         <h1>footer</h1>
       </div>
     </>
