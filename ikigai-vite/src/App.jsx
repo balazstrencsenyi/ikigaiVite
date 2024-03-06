@@ -1,22 +1,42 @@
-import  { useState } from 'react';
+import { useState, useEffect } from 'react';
 import "./App.css";
 import Header from "./components/AppBar";
 import LinearBuffer from "./components/linearBuffer";
 
 function App() {
   const [rotation, setRotation] = useState(0);
+  const [showLogo, setShowLogo] = useState(false);
+
+  useEffect(() => {
+    // Delaying to show the logo after a certain time for smooth sliding effect
+    const timer = setTimeout(() => {
+      setShowLogo(true);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const rotateImage = () => {
     setRotation(rotation => rotation + 90);
   };
 
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop - 60, // Adjusted top position considering the header height
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <>
-      <Header />
+      <Header scrollToSection={scrollToSection} />
 
       <div id="home" className="home">
         <div className="homeContainer">
-          <img src="./src/assets/logo.png" className="homeLogo" />
+          {/* Apply show class conditionally */}
+          <img src="./src/assets/logo.png" className={`homeLogo ${showLogo ? 'show' : ''}`} />
           <h1 className="homeTitle">Digital Marketing Agency</h1>
           <h2>SLOGAN</h2>
         </div>

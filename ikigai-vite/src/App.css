@@ -56,6 +56,22 @@ nav {
   background-color: #004aad;
 }
 
+.homeLogo {
+  cursor: pointer;
+  opacity: 0; /* Start with zero opacity */
+  transition: opacity 0.5s ease-in-out; /* Add transition effect */
+}
+
+.homeLogo.show {
+  opacity: 1; /* Show logo when show class is applied */
+}
+
+
+.homeLogo:hover {
+  transition: all 1.5s ease;
+  transform: rotate(360deg);
+}
+
 .homeContainer {
   display: flex;
   justify-content: center;
@@ -138,8 +154,6 @@ nav {
   height: 90vh;
   background-color: #004aad;
   color: white;
-
-
 }
 
 .rotateContainer {
