@@ -1,8 +1,16 @@
 /*import reactLogo from './assets/react.svg'*/
+import  { useState } from 'react';
 import "./App.css";
 import Header from "./components/AppBar";
+import LinearBuffer from "./components/linearBuffer";
 
 function App() {
+  const [rotation, setRotation] = useState(0);
+
+  const rotateImage = () => {
+    setRotation(rotation => rotation + 90);
+  };
+
   return (
     <>
       <Header />
@@ -62,8 +70,49 @@ function App() {
       </div>
 
       <div className="benefits">
-        
+        <div className="benefitsWelcome">
+          <h1>Benefits</h1>
+          <LinearBuffer />
+        </div>
+        <div className='rotateContainer'>
+          <img src="./src/assets/logo.png" className="rotate" style={{ transform: `rotate(${rotation}deg)`, transition: "transform 0.5s ease" }} />
+          <button className="rotateButton" onClick={rotateImage}>Rotate</button>
+        </div>
       </div>
+
+      <div className='team'>
+        <div className='leftContainer'>
+          <div>T</div>
+          <div>E</div>
+          <div>A</div>
+          <div>M</div>
+        </div>
+        <div className='rightContainer'>
+          <img src="./src/assets/balazs.jpg" className='trenyo' />
+          <img src="./src/assets/marci.jpg"className='taki' />
+        </div>
+      </div>
+
+      <div className='form'>
+        <div className='formContainer'>
+          <div className='growTogetherContainer'>
+            <h1 className='growTogether'>LET&apos;S GROW TOGETHER</h1>
+          </div>
+          <div className='formContainer'>
+          <form>
+            <input type='text' placeholder='Name' />
+            <input type='text' placeholder='Email' />
+            <textarea placeholder='Message' />
+            <button>Send</button>
+          </form>
+          </div>
+        </div>
+      </div>
+
+      <div className='footer'>
+        <h1>footer</h1>
+      </div>
+
     </>
   );
 }
