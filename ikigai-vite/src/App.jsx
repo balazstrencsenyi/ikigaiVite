@@ -1,4 +1,3 @@
-/*import reactLogo from './assets/react.svg'*/
 import  { useState } from 'react';
 import "./App.css";
 import Header from "./components/AppBar";
@@ -15,7 +14,7 @@ function App() {
     <>
       <Header />
 
-      <div className="home">
+      <div id="home" className="home">
         <div className="homeContainer">
           <img src="./src/assets/logo.png" className="homeLogo" />
           <h1 className="homeTitle">Digital Marketing Agency</h1>
@@ -23,7 +22,7 @@ function App() {
         </div>
       </div>
 
-      <div className="services">
+      <div id="services" className="services">
         <div className="servicesContainer">
           <h1 className="servicesTitle">Our Mission</h1>
           <div>
@@ -37,7 +36,7 @@ function App() {
         </div>
       </div>
 
-      <div className="services1">
+      <div id="services1" className="services1">
         <div className="services1Container">
           <div className="serviceImageContainer">
             <img src="./src/assets/serviceImage.jpg" className="serviceImage" />
@@ -69,7 +68,7 @@ function App() {
         </div>
       </div>
 
-      <div className="benefits">
+      <div id="benefits" className="benefits">
         <div className="benefitsWelcome">
           <h1>Benefits</h1>
           <LinearBuffer />
@@ -80,7 +79,7 @@ function App() {
         </div>
       </div>
 
-      <div className='team'>
+      <div id="team" className='team'>
         <div className='leftContainer'>
           <div>T</div>
           <div>E</div>
@@ -93,18 +92,18 @@ function App() {
         </div>
       </div>
 
-      <div className='form'>
+      <div id="form" className='form'>
         <div className='formContainer'>
           <div className='growTogetherContainer'>
             <h1 className='growTogether'>LET&apos;S GROW TOGETHER</h1>
           </div>
           <div className='formContainer'>
-          <form>
-            <input type='text' placeholder='Name' />
-            <input type='text' placeholder='Email' />
-            <textarea placeholder='Message' />
-            <button>Send</button>
-          </form>
+            <form>
+              <input type='text' placeholder='Name' />
+              <input type='text' placeholder='Email' />
+              <textarea placeholder='Message' />
+              <button>Send</button>
+            </form>
           </div>
         </div>
       </div>
@@ -112,7 +111,6 @@ function App() {
       <div className='footer'>
         <h1>footer</h1>
       </div>
-
     </>
   );
 }
