@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import database from "./firebase";
 import "./App.css";
 import Header from "./components/AppBar";
@@ -6,21 +6,22 @@ import LinearBuffer from "./components/linearBuffer";
 import LinearIndeterminate from "./components/linearProgess";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
-import { getDatabase, ref, push } from "firebase/database";
-import { useRef } from "react";
-
+import { ref, push } from "firebase/database";
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import XIcon from '@mui/icons-material/X';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 
 function App() {
   const [rotation, setRotation] = useState(0);
   const [showLogo, setShowLogo] = useState(false);
   const [showBalazsDiv, setShowBalazsDiv] = useState(false);
   const [showMarciDiv, setShowMarciDiv] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const balazsRef = useRef(null);
   const marciRef = useRef(null);
-
-  const [isScrolled, setIsScrolled] = useState(false);
-
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -98,7 +99,7 @@ function App() {
       observer.observe(marciRef.current);
     }
 
-       return () => {
+    return () => {
       if (balazsRef.current) {
         observer.unobserve(balazsRef.current);
       }
@@ -109,20 +110,19 @@ function App() {
   }, []);
 
   useEffect(() => {
-  const handleScroll = () => {
-    const scrollY = window.scrollY || window.pageYOffset;
-    // Define a threshold where you want the animation to start
-    const threshold = 500; // Adjust as needed
-    setIsScrolled(scrollY > threshold);
-  };
+    const handleScroll = () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+      // Define a threshold where you want the animation to start
+      const threshold = 500; // Adjust as needed
+      setIsScrolled(scrollY > threshold);
+    };
 
-  window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
-  return () => {
-    window.removeEventListener('scroll', handleScroll);
-  };
-}, []);
-
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -132,6 +132,7 @@ function App() {
         <div className="homeContainer">
           <img
             src="./src/assets/logo.png"
+            alt="logo"
             className={`homeLogo ${showLogo ? "show" : ""}`}
           />
           <h1 className="homeTitle">Digital Marketing Agency</h1>
@@ -157,7 +158,7 @@ function App() {
       <div id="services1" className="services1">
         <div className="services1Container">
           <div className="serviceImageContainer">
-            <img src="./src/assets/serviceImage.jpg" className="serviceImage" />
+            <img src="./src/assets/serviceImage.jpg" alt="service" className="serviceImage" />
           </div>
           <div className="serviceRightContainer">
             <div className="serviceTextUpperContainer">
@@ -194,6 +195,7 @@ function App() {
         <div className="rotateContainer">
           <img
             src="./src/assets/logo.png"
+            alt="rotating logo"
             className="rotate"
             style={{
               transform: `rotate(${rotation}deg)`,
@@ -215,8 +217,7 @@ function App() {
         </div>
         <div className="rightContainer">
           <div ref={balazsRef} className="balazsCards">
-
-             {showBalazsDiv && (
+            {showBalazsDiv && (
               <div className={`renderedDiv ${isScrolled ? 'slide-left' : ''}`} id="balazsRenderedDiv">
                 <h1>Trencsényi Balázs</h1>
                 <div>
@@ -229,21 +230,19 @@ function App() {
             )}
 
             <div className="balazsCard">
-            <img src="./src/assets/balazs.jpg" className="trenyo" />
-            <div className="name">Trencsényi Balázs</div>
-            <Button
-              variant="contained"
-              startIcon={<SendIcon />}
-              style={{ transform: "rotate(180deg)", backgroundColor: "black", borderRadius: "0%" ,borderTopLeftRadius: "20px", borderTopRightRadius: "20px" }}
-              onClick={toggleBalazsDiv}
-            ></Button>
+              <img src="./src/assets/balazs.jpg" alt="Balazs" className="trenyo" />
+              <div className="name">Trencsényi Balázs</div>
+              <Button
+                variant="contained"
+                startIcon={<SendIcon />}
+                style={{ transform: "rotate(180deg)", backgroundColor: "black", borderRadius: "0%" ,borderTopLeftRadius: "20px", borderTopRightRadius: "20px" }}
+                onClick={toggleBalazsDiv}
+              ></Button>
             </div>
-            
-         
           </div>
 
           <div ref={marciRef} className="marciCard">
-            <img src="./src/assets/marci2.jpeg" className="taki" />
+            <img src="./src/assets/marci2.jpeg" alt="Marci" className="taki" />
             <div className="name">Takács Márton</div>
             <Button
               variant="contained"
@@ -284,8 +283,18 @@ function App() {
       </div>
 
       <div className="footer">
-        <h1>footer</h1>
+        <div className="footerCreds">
+          ©2024 All Rights Reserved. Ikigai® is a registered trademark of The BalTon GROUP.
+        </div>
+        <div className="socials">
+        <LinkedInIcon style={{cursor:"pointer"}}/>
+        <InstagramIcon style={{cursor:"pointer"}} />
+        <FacebookIcon style={{cursor:"pointer"}} />
+        <YouTubeIcon style={{cursor:"pointer"}} />
+        <XIcon style={{cursor:"pointer"}} />
       </div>
+      </div>
+      
     </>
   );
 }

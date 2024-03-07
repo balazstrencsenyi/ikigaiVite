@@ -226,6 +226,9 @@ nav {
   align-items: center;
   width: 100%;
   background-color: black;
+  letter-spacing: 0.2em;
+  font-size: 17px;
+  font-weight: 600;
 }
 
 .leftContainer {
@@ -368,6 +371,7 @@ form > input {
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .footer > h1 {
@@ -402,4 +406,16 @@ form > input {
     transform: translateX(100%);
     opacity: 1;
   }
+}
+
+.footerCreds {
+  padding-left: 30px;
+}
+
+.socials {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 20px;
+  padding-right: 30px;
 }
