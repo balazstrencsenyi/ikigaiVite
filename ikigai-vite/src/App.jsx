@@ -12,6 +12,8 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 function App() {
   const [rotation, setRotation] = useState(0);
@@ -19,6 +21,7 @@ function App() {
   const [showBalazsDiv, setShowBalazsDiv] = useState(false);
   const [showMarciDiv, setShowMarciDiv] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
 
   const balazsRef = useRef(null);
   const marciRef = useRef(null);
@@ -64,6 +67,10 @@ function App() {
       message: message
     });
 
+    // Show notification
+    setShowNotification(true);
+
+    // Reset form
     e.target.reset();
   };
 
@@ -123,6 +130,16 @@ function App() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  // Close notification after 3 seconds
+  useEffect(() => {
+    if (showNotification) {
+      const timer = setTimeout(() => {
+        setShowNotification(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showNotification]);
 
   return (
     <>
@@ -268,6 +285,12 @@ function App() {
 
       <div id="form" className="form">
         <div className="formContainer">
+          {showNotification && (
+            <Alert severity="success" className="alert">
+              <AlertTitle>Success</AlertTitle>
+              Form submitted successfully!
+            </Alert>
+          )}
           <div className="growTogetherContainer">
             <h1 className="growTogether">LET&apos;S GROW TOGETHER</h1>
           </div>
@@ -287,14 +310,13 @@ function App() {
           ©2024 All Rights Reserved. Ikigai® is a registered trademark of The BalTon GROUP.
         </div>
         <div className="socials">
-        <LinkedInIcon style={{cursor:"pointer"}}/>
-        <InstagramIcon style={{cursor:"pointer"}} />
-        <FacebookIcon style={{cursor:"pointer"}} />
-        <YouTubeIcon style={{cursor:"pointer"}} />
-        <XIcon style={{cursor:"pointer"}} />
+          <LinkedInIcon style={{cursor:"pointer"}}/>
+          <InstagramIcon style={{cursor:"pointer"}} />
+          <FacebookIcon style={{cursor:"pointer"}} />
+          <YouTubeIcon style={{cursor:"pointer"}} />
+          <XIcon style={{cursor:"pointer"}} />
+        </div>
       </div>
-      </div>
-      
     </>
   );
 }

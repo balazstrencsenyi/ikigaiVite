@@ -419,3 +419,9 @@ form > input {
   gap: 20px;
   padding-right: 30px;
 }
+
+
+.alert {
+  position: absolute;
+  right: 20%;
+}
