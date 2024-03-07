@@ -219,9 +219,10 @@ function App() {
               transition: "transform 0.5s ease",
             }}
           />
-          <button className="rotateButton" onClick={rotateImage}>
+          <Button variant="contained" endIcon={<SendIcon />} onClick={rotateImage} style={{ position:"absolute", top:"40%", left:"50%" }}>
             Rotate
-          </button>
+          </Button>
+
         </div>
       </div>
 

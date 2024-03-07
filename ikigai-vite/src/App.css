@@ -176,9 +176,9 @@ nav {
 .rotateButton {
   position: absolute;
   top: 43%;
-  left: 0;
+  left: 30%;
 
-  border-radius: 100px;
+  border-radius: 20px;
 
   height: 100px;
   width: 400px;
@@ -419,7 +419,6 @@ form > input {
   gap: 20px;
   padding-right: 30px;
 }
-
 
 .alert {
   position: absolute;
