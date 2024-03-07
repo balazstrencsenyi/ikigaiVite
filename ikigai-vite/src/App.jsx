@@ -1,16 +1,24 @@
 import { useState, useEffect } from "react";
+import database from "./firebase";
 import "./App.css";
 import Header from "./components/AppBar";
 import LinearBuffer from "./components/linearBuffer";
 import LinearIndeterminate from "./components/linearProgess";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
+import { getDatabase, ref, push } from "firebase/database";
+import { useRef } from "react";
+
 
 function App() {
   const [rotation, setRotation] = useState(0);
   const [showLogo, setShowLogo] = useState(false);
   const [showBalazsDiv, setShowBalazsDiv] = useState(false);
   const [showMarciDiv, setShowMarciDiv] = useState(false);
+
+  const balazsRef = useRef(null);
+  const marciRef = useRef(null);
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -40,6 +48,64 @@ function App() {
   const toggleMarciDiv = () => {
     setShowMarciDiv(!showMarciDiv);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const name = e.target.elements.name.value;
+    const email = e.target.elements.email.value;
+    const message = e.target.elements.message.value;
+
+    push(ref(database, 'formData'), {
+      name: name,
+      email: email,
+      message: message
+    });
+
+    e.target.reset();
+  };
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5 // Adjust this threshold as per your requirement
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (entry.target === balazsRef.current) {
+            setShowBalazsDiv(true);
+          } else if (entry.target === marciRef.current) {
+            setShowMarciDiv(true);
+          }
+        } else {
+          if (entry.target === balazsRef.current) {
+            setShowBalazsDiv(false);
+          } else if (entry.target === marciRef.current) {
+            setShowMarciDiv(false);
+          }
+        }
+      });
+    }, options);
+
+    if (balazsRef.current) {
+      observer.observe(balazsRef.current);
+    }
+    if (marciRef.current) {
+      observer.observe(marciRef.current);
+    }
+
+       return () => {
+      if (balazsRef.current) {
+        observer.unobserve(balazsRef.current);
+      }
+      if (marciRef.current) {
+        observer.unobserve(marciRef.current);
+      }
+    };
+  }, []);
+
   return (
     <>
       <Header scrollToSection={scrollToSection} />
@@ -129,45 +195,54 @@ function App() {
           <div>A</div>
           <div>M</div>
         </div>
-    <div className="rightContainer">
-          <div className="balazsCard">
+        <div className="rightContainer">
+          <div ref={balazsRef} className="balazsCard">
             <img src="./src/assets/balazs.jpg" className="trenyo" />
+            <div className="name">Trencsényi Balázs</div>
             <Button
               variant="contained"
               startIcon={<SendIcon />}
-              style={{ transform: "rotate(180deg)", backgroundColor: "black" }}
+              style={{ transform: "rotate(180deg)", backgroundColor: "black", borderRadius: "0%" ,borderTopLeftRadius: "20px", borderTopRightRadius: "20px" }}
               onClick={toggleBalazsDiv}
-            >
-              
-            </Button>
+            ></Button>
+            
             {showBalazsDiv && (
               <div className="renderedDiv" id="balazsRenderedDiv">
                 <h1>Trencsényi Balázs</h1>
-                <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos neque suscipit ipsum sequi. Doloremque corporis commodi dolorem animi veniam soluta repellat ad inventore rem repellendus? Praesentium mollitia et molestias consequatur.</div>
+                <div>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos
+                  neque suscipit ipsum sequi. Doloremque corporis commodi dolorem
+                  animi veniam soluta repellat ad inventore rem repellendus?
+                  Praesentium mollitia et molestias consequatur.
+                </div>
               </div>
             )}
           </div>
 
-          <div className="marciCard">
-            <img src="./src/assets/marci.jpg" className="taki" />
+          <div ref={marciRef} className="marciCard">
+            <img src="./src/assets/marci2.jpeg" className="taki" />
+            <div className="name">Takács Márton</div>
             <Button
               variant="contained"
               endIcon={<SendIcon />}
-              style={{ backgroundColor: "black" }}
+              style={{ backgroundColor: "black", borderRadius: "0%", borderBottomLeftRadius: "20px", borderBottomRightRadius: "20px"}}
               onClick={toggleMarciDiv}
-            >
-              
-            </Button>
+            ></Button>
+           
             {showMarciDiv && (
               <div className="renderedDiv" id="marciRenderedDiv">
                 <h1>Takács Márton</h1>
-                <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem optio odit libero officia aliquid repellat vel assumenda maxime, facere excepturi quidem voluptatem iure. Est enim quia illum, ipsum necessitatibus nostrum.</div>
+                <div>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Exercitationem optio odit libero officia aliquid repellat vel
+                  assumenda maxime, facere excepturi quidem voluptatem iure. Est
+                  enim quia illum, ipsum necessitatibus nostrum.
+                </div>
               </div>
             )}
           </div>
         </div>
       </div>
-
 
       <div id="form" className="form">
         <div className="formContainer">
@@ -175,11 +250,11 @@ function App() {
             <h1 className="growTogether">LET&apos;S GROW TOGETHER</h1>
           </div>
           <div className="formContainer">
-            <form>
-              <input type="text" placeholder="Name" />
-              <input type="text" placeholder="Email" />
-              <textarea placeholder="Message" />
-              <button>Send</button>
+            <form onSubmit={handleSubmit}>
+              <input type="text" name="name" placeholder="Name" />
+              <input type="email" name="email" placeholder="Email" />
+              <textarea name="message" placeholder="Message" />
+              <button type="submit">Send</button>
             </form>
           </div>
         </div>

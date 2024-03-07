@@ -1,15 +1,15 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getAuth } from "firebase/auth";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+//import { initializeApp } from "firebase/app";
+//import { getAnalytics } from "firebase/analytics";
+//import { getAuth } from "firebase/auth";
+//import { getDatabase } from "firebase/database";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
+
 const firebaseConfig = {
   apiKey: "AIzaSyBiB1oZeHOgpaYP8eXnCtvoWJFQXartxFQ",
   authDomain: "ikigai-313c3.firebaseapp.com",
+  databaseURL: "https://ikigai-313c3-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "ikigai-313c3",
   storageBucket: "ikigai-313c3.appspot.com",
   messagingSenderId: "511973933580",
@@ -18,7 +18,16 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-/*const analytics = getAnalytics(app);*/
+/*const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
 export const auth = getAuth(app);
+const database = getDatabase(app);
+
+export default database;*/
+
+const app = initializeApp(firebaseConfig);
+const database = getDatabase();
+
+export default database;
+
+
