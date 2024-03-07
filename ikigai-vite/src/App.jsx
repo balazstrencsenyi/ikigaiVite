@@ -232,7 +232,7 @@ function App() {
         </div>
         <div className="benefitsBottomContainer">
           <div className="benefitsBottomLeftContainer">
-            <div className="referencesContainer">
+            <div className="referencesContainer">     
               <TitlebarBelowImageList />
               <div className="scrollText">
                 <div className="scrollLetter">S</div>
