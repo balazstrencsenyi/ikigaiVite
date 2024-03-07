@@ -19,6 +19,8 @@ function App() {
   const balazsRef = useRef(null);
   const marciRef = useRef(null);
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -105,6 +107,22 @@ function App() {
       }
     };
   }, []);
+
+  useEffect(() => {
+  const handleScroll = () => {
+    const scrollY = window.scrollY || window.pageYOffset;
+    // Define a threshold where you want the animation to start
+    const threshold = 500; // Adjust as needed
+    setIsScrolled(scrollY > threshold);
+  };
+
+  window.addEventListener('scroll', handleScroll);
+
+  return () => {
+    window.removeEventListener('scroll', handleScroll);
+  };
+}, []);
+
 
   return (
     <>
@@ -196,18 +214,10 @@ function App() {
           <div>M</div>
         </div>
         <div className="rightContainer">
-          <div ref={balazsRef} className="balazsCard">
-            <img src="./src/assets/balazs.jpg" className="trenyo" />
-            <div className="name">Trencsényi Balázs</div>
-            <Button
-              variant="contained"
-              startIcon={<SendIcon />}
-              style={{ transform: "rotate(180deg)", backgroundColor: "black", borderRadius: "0%" ,borderTopLeftRadius: "20px", borderTopRightRadius: "20px" }}
-              onClick={toggleBalazsDiv}
-            ></Button>
-            
-            {showBalazsDiv && (
-              <div className="renderedDiv" id="balazsRenderedDiv">
+          <div ref={balazsRef} className="balazsCards">
+
+             {showBalazsDiv && (
+              <div className={`renderedDiv ${isScrolled ? 'slide-left' : ''}`} id="balazsRenderedDiv">
                 <h1>Trencsényi Balázs</h1>
                 <div>
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos
@@ -217,6 +227,19 @@ function App() {
                 </div>
               </div>
             )}
+
+            <div className="balazsCard">
+            <img src="./src/assets/balazs.jpg" className="trenyo" />
+            <div className="name">Trencsényi Balázs</div>
+            <Button
+              variant="contained"
+              startIcon={<SendIcon />}
+              style={{ transform: "rotate(180deg)", backgroundColor: "black", borderRadius: "0%" ,borderTopLeftRadius: "20px", borderTopRightRadius: "20px" }}
+              onClick={toggleBalazsDiv}
+            ></Button>
+            </div>
+            
+         
           </div>
 
           <div ref={marciRef} className="marciCard">
@@ -230,7 +253,7 @@ function App() {
             ></Button>
            
             {showMarciDiv && (
-              <div className="renderedDiv" id="marciRenderedDiv">
+              <div className={`renderedDiv ${isScrolled ? 'slide-right' : ''}`} id="marciRenderedDiv">
                 <h1>Takács Márton</h1>
                 <div>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
