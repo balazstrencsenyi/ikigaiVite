@@ -7,13 +7,14 @@ import LinearIndeterminate from "./components/linearProgess";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import { ref, push } from "firebase/database";
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import XIcon from '@mui/icons-material/X';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import XIcon from "@mui/icons-material/X";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+import TitlebarBelowImageList from "./components/References";
 
 function App() {
   const [rotation, setRotation] = useState(0);
@@ -43,7 +44,7 @@ function App() {
     if (section) {
       window.scrollTo({
         top: section.offsetTop - 60,
-        behavior: "smooth",  
+        behavior: "smooth",
       });
     }
   };
@@ -62,10 +63,10 @@ function App() {
     const email = e.target.elements.email.value;
     const message = e.target.elements.message.value;
 
-    push(ref(database, 'formData'), {
+    push(ref(database, "formData"), {
       name: name,
       email: email,
-      message: message
+      message: message,
     });
 
     // Show notification
@@ -78,12 +79,12 @@ function App() {
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.5 // Adjust this threshold as per your requirement
+      rootMargin: "0px",
+      threshold: 0.5, // Adjust this threshold as per your requirement
     };
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           if (entry.target === balazsRef.current) {
             setShowBalazsDiv(true);
@@ -126,10 +127,10 @@ function App() {
       setIsScrolled(scrollY > threshold);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -150,7 +151,8 @@ function App() {
 
     // Calculate the rotation angle based on the scroll position
     if (scrollPosition >= startRange && scrollPosition <= endRange) {
-      const normalizedScroll = (scrollPosition - startRange) / (endRange - startRange);
+      const normalizedScroll =
+        (scrollPosition - startRange) / (endRange - startRange);
       const rotationAngle = normalizedScroll * 180; // Rotate 360 degrees
       setRotation(rotationAngle);
     }
@@ -190,7 +192,11 @@ function App() {
       <div id="services1" className="services1">
         <div className="services1Container">
           <div className="serviceImageContainer">
-            <img src="./src/assets/serviceImage.jpg" alt="service" className="serviceImage" />
+            <img
+              src="./src/assets/serviceImage.jpg"
+              alt="service"
+              className="serviceImage"
+            />
           </div>
           <div className="serviceRightContainer">
             <div className="serviceTextUpperContainer">
@@ -221,23 +227,42 @@ function App() {
 
       <div id="benefits" className="benefits">
         <div className="benefitsWelcome">
-          <h1>Benefits</h1>
+          <h1>Benefits & References</h1>
           <LinearBuffer />
         </div>
-        <div className="rotateContainer">
-          <img
-            src="./src/assets/logo.png"
-            alt="rotating logo"
-            className="rotate"
-            style={{
-              transform: `rotate(${rotation}deg)`,
-              transition: "transform 0.5s ease",
-            }}
-          />
-          <Button variant="contained" endIcon={<SendIcon />} onClick={rotateImage} style={{ position:"absolute", top:"40%", left:"50%" }}>
-            Rotate
-          </Button>
-
+        <div className="benefitsBottomContainer">
+          <div className="benefitsBottomLeftContainer">
+            <div className="referencesContainer">
+              <TitlebarBelowImageList />
+              <div className="scrollText">
+                <div className="scrollLetter">S</div>
+                <div className="scrollLetter">C</div>
+                <div className="scrollLetter">R</div>
+                <div className="scrollLetter">O</div>
+                <div className="scrollLetter">L</div>
+                <div className="scrollLetter">L</div>
+              </div>
+            </div>
+          </div>
+          <div className="rotateContainer">
+            <img
+              src="./src/assets/logo.png"
+              alt="rotating logo"
+              className="rotate"
+              style={{
+                transform: `rotate(${rotation}deg)`,
+                transition: "transform 0.5s ease",
+              }}
+            />
+            <Button
+              variant="contained"
+              endIcon={<SendIcon />}
+              onClick={rotateImage}
+              style={{ position: "absolute", top: "40%", left: "30%" }}
+            >
+              Rotate
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -251,24 +276,37 @@ function App() {
         <div className="rightContainer">
           <div ref={balazsRef} className="balazsCards">
             {showBalazsDiv && (
-              <div className={`renderedDiv ${isScrolled ? 'slide-left' : ''}`} id="balazsRenderedDiv">
+              <div
+                className={`renderedDiv ${isScrolled ? "slide-left" : ""}`}
+                id="balazsRenderedDiv"
+              >
                 <h1>Trencsényi Balázs</h1>
                 <div>
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos
-                  neque suscipit ipsum sequi. Doloremque corporis commodi dolorem
-                  animi veniam soluta repellat ad inventore rem repellendus?
-                  Praesentium mollitia et molestias consequatur.
+                  neque suscipit ipsum sequi. Doloremque corporis commodi
+                  dolorem animi veniam soluta repellat ad inventore rem
+                  repellendus? Praesentium mollitia et molestias consequatur.
                 </div>
               </div>
             )}
 
             <div className="balazsCard">
-              <img src="./src/assets/balazs.jpg" alt="Balazs" className="trenyo" />
+              <img
+                src="./src/assets/balazs.jpg"
+                alt="Balazs"
+                className="trenyo"
+              />
               <div className="name">Trencsényi Balázs</div>
               <Button
                 variant="contained"
                 startIcon={<SendIcon />}
-                style={{ transform: "rotate(180deg)", backgroundColor: "black", borderRadius: "0%" ,borderTopLeftRadius: "20px", borderTopRightRadius: "20px" }}
+                style={{
+                  transform: "rotate(180deg)",
+                  backgroundColor: "black",
+                  borderRadius: "0%",
+                  borderTopLeftRadius: "20px",
+                  borderTopRightRadius: "20px",
+                }}
                 onClick={toggleBalazsDiv}
               ></Button>
             </div>
@@ -280,12 +318,20 @@ function App() {
             <Button
               variant="contained"
               endIcon={<SendIcon />}
-              style={{ backgroundColor: "black", borderRadius: "0%", borderBottomLeftRadius: "20px", borderBottomRightRadius: "20px"}}
+              style={{
+                backgroundColor: "black",
+                borderRadius: "0%",
+                borderBottomLeftRadius: "20px",
+                borderBottomRightRadius: "20px",
+              }}
               onClick={toggleMarciDiv}
             ></Button>
-           
+
             {showMarciDiv && (
-              <div className={`renderedDiv ${isScrolled ? 'slide-right' : ''}`} id="marciRenderedDiv">
+              <div
+                className={`renderedDiv ${isScrolled ? "slide-right" : ""}`}
+                id="marciRenderedDiv"
+              >
                 <h1>Takács Márton</h1>
                 <div>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -323,14 +369,15 @@ function App() {
 
       <div className="footer">
         <div className="footerCreds">
-          ©2024 All Rights Reserved. Ikigai® is a registered trademark of The BalTon GROUP.
+          ©2024 All Rights Reserved. Ikigai® is a registered trademark of The
+          BalTon GROUP.
         </div>
         <div className="socials">
-          <LinkedInIcon style={{cursor:"pointer"}}/>
-          <InstagramIcon style={{cursor:"pointer"}} />
-          <FacebookIcon style={{cursor:"pointer"}} />
-          <YouTubeIcon style={{cursor:"pointer"}} />
-          <XIcon style={{cursor:"pointer"}} />
+          <LinkedInIcon style={{ cursor: "pointer" }} />
+          <InstagramIcon style={{ cursor: "pointer" }} />
+          <FacebookIcon style={{ cursor: "pointer" }} />
+          <YouTubeIcon style={{ cursor: "pointer" }} />
+          <XIcon style={{ cursor: "pointer" }} />
         </div>
       </div>
     </>
