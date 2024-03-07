@@ -57,6 +57,10 @@ nav {
   background-color: #004aad;
 }
 
+h2 {
+  font-weight: 400;
+}
+
 .homeLogo {
   cursor: pointer;
   opacity: 0; /* Start with zero opacity */
@@ -137,6 +141,7 @@ nav {
   height: 50%;
   gap: 40px;
   padding-left: 20px;
+  border-bottom: solid 2px #018bdb;
 }
 
 .serviceTextBottomContainer {
@@ -170,7 +175,7 @@ nav {
   left: 65%; /* Adjust as needed */
   bottom: 5%; /* Adjust as needed */
   transform: translate(-50%, -50%); /* Center the image */
-  transition: transform 0.5s ease; /* Apply transition for smooth rotation */
+  transition: transform 1s ease; /* Apply transition for smooth rotation */
 }
 
 .rotateButton {
@@ -242,11 +247,13 @@ nav {
 
   justify-content: center;
 
-  font-size: 40px;
+  font-size: 70px;
 
   padding-left: 30px;
 
   border-right: 2px solid #018bdb;
+
+  font-weight: 700;
 }
 
 .rightContainer {

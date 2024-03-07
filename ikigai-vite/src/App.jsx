@@ -22,6 +22,7 @@ function App() {
   const [showMarciDiv, setShowMarciDiv] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   const balazsRef = useRef(null);
   const marciRef = useRef(null);
@@ -42,7 +43,7 @@ function App() {
     if (section) {
       window.scrollTo({
         top: section.offsetTop - 60,
-        behavior: "smooth",
+        behavior: "smooth",  
       });
     }
   };
@@ -119,6 +120,7 @@ function App() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY || window.pageYOffset;
+      setScrollPosition(scrollY);
       // Define a threshold where you want the animation to start
       const threshold = 500; // Adjust as needed
       setIsScrolled(scrollY > threshold);
@@ -141,6 +143,19 @@ function App() {
     }
   }, [showNotification]);
 
+  useEffect(() => {
+    // Define the range where you want the rotation to occur
+    const startRange = 2000; // Adjust as needed
+    const endRange = 4000; // Adjust as needed
+
+    // Calculate the rotation angle based on the scroll position
+    if (scrollPosition >= startRange && scrollPosition <= endRange) {
+      const normalizedScroll = (scrollPosition - startRange) / (endRange - startRange);
+      const rotationAngle = normalizedScroll * 180; // Rotate 360 degrees
+      setRotation(rotationAngle);
+    }
+  }, [scrollPosition]);
+
   return (
     <>
       <Header scrollToSection={scrollToSection} />
@@ -153,7 +168,7 @@ function App() {
             className={`homeLogo ${showLogo ? "show" : ""}`}
           />
           <h1 className="homeTitle">Digital Marketing Agency</h1>
-          <h2>SLOGAN</h2>
+          <h2>Unleash Your Digital Purpose with Ikigai.</h2>
         </div>
       </div>
 
