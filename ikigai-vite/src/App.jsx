@@ -161,8 +161,16 @@ function App() {
   return (
     <>
       <Header scrollToSection={scrollToSection} />
-
+      <video autoPlay muted loop id="background-video">
+            <source
+              src="./src/assets/background.mp4"
+              type="video/mp4"
+              className="video"
+            />
+            Your browser does not support the video tag.
+          </video>
       <div id="home" className="home">
+         
         <div className="homeContainer">
           <img
             src="./src/assets/logo.png"
@@ -232,7 +240,7 @@ function App() {
         </div>
         <div className="benefitsBottomContainer">
           <div className="benefitsBottomLeftContainer">
-            <div className="referencesContainer">     
+            <div className="referencesContainer">
               <TitlebarBelowImageList />
               <div className="scrollText">
                 <div className="scrollLetter">S</div>

@@ -23,7 +23,7 @@ li:hover {
   top: 0;
   width: 100%;
   height: 60px;
-  background-color: #018bdb;
+  background-color: #018bdb96;
   display: flex;
   color: white;
 
@@ -31,19 +31,32 @@ li:hover {
   padding-right: 20px;
 
   z-index: 1;
+  transition: background-color 0.3s ease; /* Add transition effect */
 }
 
-ul {
+.Header.scrolled {
+  background-color: #018bdb; /* Change background color */
+  opacity: 1; /* Set full opacity */
+}
+
+.profileIconContainer {
+  position: absolute;
+  right: 0;
+  padding-right: 30px;
+}
+
+nav > ul {
   display: flex;
   gap: 70px;
 }
 
 nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   width: 100%;
   padding: 0 20px;
+  gap: 50px;
 }
 
 .home {
@@ -54,7 +67,7 @@ nav {
   justify-content: center;
   align-items: center;
 
-  background-color: #004aad;
+  /*background-color: #004aad;*/
 }
 
 h2 {
@@ -482,4 +495,30 @@ form > input {
 .alert {
   position: absolute;
   right: 20%;
+}
+
+#background-video {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 113%;
+}
+
+.video {
+  display: flex;
+  height: 113%;
+  width: 100%;
+}
+
+.ikigaiAspects {
+  width: 50px;
+  height: 50px;
+}
+
+.profileIconContainer {
+  display: inline-block; /* Ensure the container doesn't take the entire width */
+}
+
+.MuiMenuItem-root {
+  display: block; /* Display menu items as block elements */
 }

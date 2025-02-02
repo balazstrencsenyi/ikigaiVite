@@ -29,6 +29,8 @@ export default function TitlebarBelowImageList() {
 }
 
 
+
+
 const itemData = [
   {
     img: './src/assets/wishversum.png',
@@ -66,3 +68,46 @@ const itemData = [
   },
   
 ];
+
+/*
+
+const itemData = [
+  {
+    img: './src/assets/wishversum.png',
+    title: 'www.wishversum.com',
+  },
+  {
+    img: './src/assets/syntric.png',
+    title: 'www.syntric.ai',
+   
+  },
+  {
+    img: './src/assets/apple.png',
+    title: 'https://store-vercel-2.vercel.app/',
+
+  },
+  {
+    img: './src/assets/szentesi.png',
+    title: 'szentesivadvedelem.hu',
+
+  },
+  {
+    img: './src/assets/res.png',
+    title: 'not deployed yet',
+
+  },
+  {
+    img: './src/assets/weather.png',
+    title: 'not deployed yet',
+
+  },
+  {
+    img: './src/assets/makeawish.png',
+    title: 'not deployed yet',
+    
+  },
+  
+];
+
+
+*/
